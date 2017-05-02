@@ -1,11 +1,20 @@
+/********* StatusBarNotification.m Cordova Plugin Implementation *******/
+
 #import "StatusBarNotification.h"
 #import <Cordova/CDV.h>
 
+@interface StatusBarNotification : CDVPlugin {
+  // Member variables go here.
+}
+
+- (void)coolMethod:(CDVInvokedUrlCommand*)command;
+@end
+
 @implementation StatusBarNotification
 
-- (void)StatusBarNotification:(CDVInvokedUrlCommand*)command
+- (void)coolMethod:(CDVInvokedUrlCommand*)command
 {
-  CDVPluginResult* pluginResult = nil;
+     CDVPluginResult* pluginResult = nil;
   NSString* msg = [command.arguments objectAtIndex:0];
 
   if (msg == nil || [msg length] == 0) {

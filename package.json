@@ -1,0 +1,25 @@
+{
+  "name": "StatusBarNotification",
+  "version": "0.0.1",
+  "description": "cordova, status bar, notification",
+  "cordova": {
+    "id": "cordova-plugin-statusbarnotification",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgemejia/CordovaStatusBarNotification.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Jorge Mejia",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/jorgemejia/CordovaStatusBarNotification/issues"
+  },
+  "homepage": "https://github.com/jorgemejia/CordovaStatusBarNotification#readme"
+}
