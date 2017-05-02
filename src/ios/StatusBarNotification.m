@@ -3,12 +3,6 @@
 #import "StatusBarNotification.h"
 #import <Cordova/CDV.h>
 
-@interface StatusBarNotification : CDVPlugin {
-  // Member variables go here.
-}
-
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
-@end
 
 @implementation StatusBarNotification
 

@@ -4,9 +4,11 @@
 	<description>Cordova Status Bar Notification </description>
 	<license>MIT</license>
 	<keywords>cordova, status bar, notification</keywords>
+
 	<js-module name="StatusBarNotification" src="www/StatusBarNotification.js">
 		<clobbers target="StatusBarNotification" />
 	</js-module>
+
 	<platform name="ios">
 		<config-file parent="/*" target="config.xml">
 			<feature name="StatusBarNotification">
