@@ -10,7 +10,7 @@
 	</engines>
 
     <js-module name="StatusBarNotification" src="www/StatusBarNotification.js">
-        <clobbers target="cordova.plugins.StatusBarNotification" />
+        <clobbers target="StatusBarNotification" />
     </js-module>
 
 	<platform name="ios">
