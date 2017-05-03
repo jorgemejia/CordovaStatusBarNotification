@@ -26,7 +26,7 @@ StatusBarNotification.showNotification('Network error connection');
 
     The MIT License (MIT)
 
-    Copyright (c) 2015 Cezary Wojcik <http://www.cezarywojcik.com>
+    Copyright (c) 2017 Jorge Mejía <http://jorge182.webfactional.com/>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
