@@ -45,21 +45,38 @@ messageAsString:msg];
   [self.commandDelegate sendPluginResult:pluginResult 
 callbackId:command.callbackId];
 }
-
 - (void)showNotification:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* msg = [command.arguments objectAtIndex:0];
+    BOOL isLarge = [command.arguments objectAtIndex:1];
     CWStatusBarNotification *notification = [CWStatusBarNotification new];
     
     
     if (msg == nil || [msg length] == 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     } else {
-        [notification displayNotificationWithMessage:msg forDuration:1.0f];
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                         messageAsString:msg];
+        if (isLarge) {
+            [notification displayNotificationWithMessage:msg completion:nil];
+        }else{
+            [notification displayNotificationWithMessage:msg forDuration:1.0f];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                             messageAsBool:true];
+        }
     }
+    
+    [self.commandDelegate sendPluginResult:pluginResult
+                                callbackId:command.callbackId];
+}
+
+- (void) stopNotification:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = nil;
+    CWStatusBarNotification *notification = [CWStatusBarNotification new];
+    [notification dismissNotification];
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                       messageAsBool:true];
     
     [self.commandDelegate sendPluginResult:pluginResult
                                 callbackId:command.callbackId];
