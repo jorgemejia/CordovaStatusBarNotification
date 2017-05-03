@@ -48,8 +48,13 @@ callbackId:command.callbackId];
 - (void)showNotification:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    NSString* msg = [command.arguments objectAtIndex:0];
-    BOOL isLarge = [command.arguments objectAtIndex:1];
+    //NSString* msg = [command.arguments objectAtIndex:0];
+    //BOOL isLarge = [command.arguments objectAtIndex:1];
+    NSDictionary *optionsParams = [command.arguments objectAtIndex:0][0];
+
+    NSString* msg = [optionsParams valueForKey:@"message"];
+    BOOL isLarge  = [optionsParams valueForKey:@"large"];
+     
     CWStatusBarNotification *notification = [CWStatusBarNotification new];
     
     
