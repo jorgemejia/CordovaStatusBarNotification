@@ -1,9 +1,9 @@
 {
-  "name": "cordova-plugin-status-bar-notification",
-  "version": "0.0.2",
-  "description": "cordova plugin status bar notification",
+  "name": "cordova-plugin-statusbar-notification",
+  "version": "0.0.1",
+  "description": "cordova plugin statusbar notification",
   "cordova": {
-    "id": "cordova-plugin-status-bar-notification",
+    "id": "cordova-plugin-statusbar-notification",
     "platforms": [
       "ios"
     ]
