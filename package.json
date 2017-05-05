@@ -1,9 +1,9 @@
 {
-  "name": "statusbar-notification",
+  "name": "cordova-plugin-status-bar-notification",
   "version": "0.0.1",
-  "description": "ccordova plugin status bar notification",
+  "description": "cordova plugin status bar notification",
   "cordova": {
-    "id": "cordova-plugin-statusbar-notification",
+    "id": "cordova-plugin-status-bar-notification",
     "platforms": [
       "ios"
     ]
@@ -13,8 +13,8 @@
     "url": "git+https://github.com/jorgemejia/CordovaStatusBarNotification.git"
   },
   "keywords": [
-    "cordova status bar notification",
-    "status bar",
+    "cordova statusbar notification",
+    "statusbar",
     "notification",
     "ecosystem:cordova",
     "cordova-ios"
@@ -26,4 +26,3 @@
   },
   "homepage": "https://github.com/jorgemejia/CordovaStatusBarNotification#readme"
 }
-
