@@ -1,4 +1,4 @@
-# CordovaStatusBarNotification
+# Cordova Status Bar Notification
 Based on CWStatusBarNotification [library](https://github.com/cezarywojcik/CWStatusBarNotification/)
 
 Cordova Status Bar Notification for iOS
