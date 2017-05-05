@@ -20,6 +20,22 @@ StatusBarNotification.showNotification('Network error connection');
 ```objc
 StatusBarNotification.showNotification('Network error connection');
 ```
+## Options
+```objc
+var options = [{
+    message:'Network error connection',
+    large        : false,                //------> true, false
+    duration     : 10,                   //------> Seconds to hide the notification   
+    labelColor   : "blueColor",          //------> Based on UIColor: redColor, blackColor...  
+    bgroundColor : "redColor",           //------> Based on UIColor: redColor, blackColor...  
+    animationIn  : "top",                //------> available: top, bottom, left, rigth
+    animationOut : "bottom"              //------> available: top, bottom, left, rigth
+}]
+
+
+StatusBarNotification.showNotification(options);
+```
+
 
 
 ## License
