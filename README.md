@@ -4,8 +4,8 @@ Based on CWStatusBarNotification [library](https://github.com/cezarywojcik/CWSta
 Cordova Status Bar Notification for iOS
 
 ## Installation
+
 `cordova plugin add statusbarnotification`
-`cordova plugin add https://github.com/jorgemejia/CordovaStatusBarNotification.git`
 
 
 ## Usage
