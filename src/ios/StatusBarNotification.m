@@ -45,34 +45,93 @@ messageAsString:msg];
   [self.commandDelegate sendPluginResult:pluginResult 
 callbackId:command.callbackId];
 }
+
 - (void)showNotification:(CDVInvokedUrlCommand*)command
 {
+    CWStatusBarNotification *notification = [CWStatusBarNotification new];
     CDVPluginResult* pluginResult = nil;
-    //NSString* msg = [command.arguments objectAtIndex:0];
-    //BOOL isLarge = [command.arguments objectAtIndex:1];
     NSDictionary *optionsParams = [command.arguments objectAtIndex:0][0];
 
     NSString* msg = [optionsParams valueForKey:@"message"];
-    BOOL isLarge  = [optionsParams valueForKey:@"large"];
-     
-    CWStatusBarNotification *notification = [CWStatusBarNotification new];
+    BOOL isLarge  = [[optionsParams valueForKey:@"large"] boolValue];
+    float duration = (float)[[optionsParams valueForKey:@"duration"] longValue];
+    NSString* labelColor = [optionsParams valueForKey:@"labelColor"];
+    NSString* bgroundColor = [optionsParams valueForKey:@"bgroundColor"];
+    NSString* animationIn = [optionsParams valueForKey:@"animationIn"];
+    NSString* animationOut = [optionsParams valueForKey:@"animationOut"];
     
+    SEL lblCol = NSSelectorFromString(labelColor);
+    UIColor *labColor = nil;
     
+    if( [UIColor respondsToSelector:lblCol] == YES ){
+        labColor = [UIColor performSelector:lblCol];
+        notification.notificationLabelTextColor = labColor;
+    }
+    
+    SEL bCol = NSSelectorFromString(bgroundColor);
+    UIColor *bcolor = nil;
+    
+    if( [UIColor respondsToSelector:bCol] == YES ){
+        bcolor = [UIColor performSelector: bCol];
+        notification.notificationLabelBackgroundColor = bcolor;
+    }
+    
+    if( animationIn != nil || [animationIn length] > 0 ){
+    
+        ((void (^)())@{
+            @"top" : ^{
+                notification.notificationAnimationInStyle= CWNotificationAnimationStyleTop;
+            },
+            @"bottom" : ^{
+                notification.notificationAnimationInStyle= CWNotificationAnimationStyleBottom;
+            },
+            @"left" : ^{
+                notification.notificationAnimationInStyle= CWNotificationAnimationStyleLeft;
+            },
+            @"right" : ^{
+                notification.notificationAnimationInStyle= CWNotificationAnimationStyleRight;
+            },
+        }[animationIn] ?: ^{
+                    NSLog(@"default");
+        })();
+    }
+    
+    if( animationOut != nil || [animationOut length] > 0 ){
+        
+        ((void (^)())@{
+                       @"top" : ^{
+            notification.notificationAnimationOutStyle= CWNotificationAnimationStyleTop;
+        },
+                       @"bottom" : ^{
+            notification.notificationAnimationOutStyle= CWNotificationAnimationStyleBottom;
+        },
+                       @"left" : ^{
+            notification.notificationAnimationOutStyle= CWNotificationAnimationStyleLeft;
+        },
+                       @"right" : ^{
+            notification.notificationAnimationOutStyle= CWNotificationAnimationStyleRight;
+        },
+        }[animationIn] ?: ^{
+            NSLog(@"default");
+        })();
+    }
+
+
     if (msg == nil || [msg length] == 0) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Arg was null"];
     } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:true];
         if (isLarge) {
             [notification displayNotificationWithMessage:msg completion:nil];
         }else{
-            [notification displayNotificationWithMessage:msg forDuration:1.0f];
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                             messageAsBool:true];
+            [notification displayNotificationWithMessage:msg forDuration:duration];
         }
     }
+        
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     
-    [self.commandDelegate sendPluginResult:pluginResult
-                                callbackId:command.callbackId];
 }
+
 
 - (void) stopNotification:(CDVInvokedUrlCommand*)command
 {
