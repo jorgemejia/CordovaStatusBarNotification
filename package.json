@@ -13,7 +13,7 @@
     "url": "git+https://github.com/jorgemejia/CordovaStatusBarNotification.git"
   },
   "keywords": [
-    "status bar notification",
+    "cordova status bar notification",
     "status bar",
     "notification",
     "ecosystem:cordova",
