@@ -9,7 +9,7 @@ Cordova Statusbar Notification for iOS
 
 ## Demo
 
-![custom colors](ss1.gif)
+![custom colors](animation.gif)
 
 ## Usage
 Tested on ionic 2 
