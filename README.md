@@ -22,7 +22,7 @@ StatusBarNotification.showNotification('Network error connection');
 
 ## Sample usage
 ```objc
-StatusBarNotification.showNotification('Network error connection');
+StatusBarNotification.showNotification([{message:'Network error connection'}]);
 ```
 ## Options
 ```objc
