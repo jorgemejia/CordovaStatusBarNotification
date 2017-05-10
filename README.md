@@ -7,6 +7,9 @@ Cordova Statusbar Notification for iOS
 
 `cordova plugin add https://github.com/jorgemejia/CordovaStatusBarNotification.git`
 
+## Demo
+
+![custom colors](ss1.gif)
 
 ## Usage
 Tested on ionic 2 
