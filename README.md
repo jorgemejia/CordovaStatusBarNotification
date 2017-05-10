@@ -17,7 +17,7 @@ Tested on ionic 2
 ```objc
 declare var StatusBarNotification : any;
 
-StatusBarNotification.showNotification('Network error connection');
+StatusBarNotification.showNotification([{message:'Network error connection'}]);
 ```
 
 ## Sample usage
