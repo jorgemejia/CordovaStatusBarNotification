@@ -28,7 +28,7 @@ StatusBarNotification.showNotification([{message:'Network error connection'}]);
 ```objc
 var options = [{
     message:'Network error connection',
-    large        : false,                //------> true, false
+    sticky       : false,                //------> true, false
     duration     : 10,                   //------> Seconds to hide the notification   
     labelColor   : "blueColor",          //------> Based on UIColor: redColor, blackColor...  
     bgroundColor : "redColor",           //------> Based on UIColor: redColor, blackColor...  
@@ -36,12 +36,23 @@ var options = [{
     animationOut : "bottom"              //------> available: top, bottom, left, rigth
 }]
 
-
 StatusBarNotification.showNotification(options);
 ```
 
+## Control show-hide status bar notification
+```objc
+var options = [{
+    message :'Network error connection',    //------> label
+    sticky  : true,                         //------> true, false
+}]
 
+StatusBarNotification.showNotification(options);
 
+```
+## Hide notification
+```objc
+StatusBarNotification.stopNotification();
+```
 ## License
 
     The MIT License (MIT)
