@@ -14,6 +14,9 @@
 # pragma mark - ScrollLabel
 
 
+CWStatusBarNotification * notification;
+
+
 @implementation StatusBarNotification
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command
@@ -48,12 +51,13 @@ callbackId:command.callbackId];
 
 - (void)showNotification:(CDVInvokedUrlCommand*)command
 {
-    CWStatusBarNotification *notification = [CWStatusBarNotification new];
+    //CWStatusBarNotification *notification = [CWStatusBarNotification new];
+    notification = [CWStatusBarNotification new];
     CDVPluginResult* pluginResult = nil;
     NSDictionary *optionsParams = [command.arguments objectAtIndex:0][0];
 
     NSString* msg = [optionsParams valueForKey:@"message"];
-    BOOL isLarge  = [[optionsParams valueForKey:@"large"] boolValue];
+    BOOL isSticky  = [[optionsParams valueForKey:@"sticky"] boolValue];
     float duration = (float)[[optionsParams valueForKey:@"duration"] longValue];
     NSString* labelColor = [optionsParams valueForKey:@"labelColor"];
     NSString* bgroundColor = [optionsParams valueForKey:@"bgroundColor"];
@@ -121,10 +125,10 @@ callbackId:command.callbackId];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Arg was null"];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:true];
-        if (isLarge) {
-            [notification displayNotificationWithMessage:msg completion:nil];
+        if (isSticky) {
+           [notification displayNotificationWithMessage:msg completion:nil];
         }else{
-            [notification displayNotificationWithMessage:msg forDuration:duration];
+           [notification displayNotificationWithMessage:msg forDuration:duration];
         }
     }
         
@@ -136,8 +140,8 @@ callbackId:command.callbackId];
 - (void) stopNotification:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    CWStatusBarNotification *notification = [CWStatusBarNotification new];
     [notification dismissNotification];
+    
     
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                        messageAsBool:true];
@@ -626,14 +630,16 @@ static void cancel_delayed_block(CWDelayedBlockHandle delayedHandle)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateStatusBarFrame) name:UIApplicationWillChangeStatusBarFrameNotification object:nil];
         
         // animate
-        [UIView animateWithDuration:self.notificationAnimationDuration animations:^{
-            [self firstFrameChange];
-        } completion:^(BOOL finished) {
-            double delayInSeconds = [self.notificationLabel scrollTime];
-            perform_block_after_delay(delayInSeconds, ^{
-                [completion invoke];
-            });
-        }];
+        
+            [UIView animateWithDuration:self.notificationAnimationDuration animations:^{
+                [self firstFrameChange];
+            } completion:^(BOOL finished) {
+                double delayInSeconds = [self.notificationLabel scrollTime];
+                perform_block_after_delay(delayInSeconds, ^{
+                    [completion invoke];
+                });
+            }];
+        
     }
 }
 
